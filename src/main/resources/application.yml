@@ -1,0 +1,21 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: zuul
+  cloud:
+    gateway:
+      routes:
+        - id: user
+          uri: http://37.206.216.26:3003/
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=1
+        - id: fusion
+          uri: http://35.207.216.26:9011/
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1
