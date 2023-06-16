@@ -21,3 +21,15 @@ spring:
             - Path=/api/**
           filters:
             - StripPrefix=0
+        - id: pdf
+          uri: http://35.207.216.26:9011/
+          predicates:
+            - Path=/pdf/**
+          filters:
+            - StripPrefix=0
+        - id: events
+          uri: http://35.207.216.26:9011/
+          predicates:
+            - Path=/events/**
+          filters:
+            - StripPrefix=0
