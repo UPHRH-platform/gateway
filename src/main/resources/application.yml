@@ -33,3 +33,9 @@ spring:
             - Path=/events/**
           filters:
             - StripPrefix=0
+        - id: puppeteer
+          uri: http://35.207.216.26:8000/
+          predicates:
+            - Path=/convert-via-puppeteer/**
+          filters:
+            - StripPrefix=0
