@@ -1,0 +1,41 @@
+server:
+  port: 8081
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: user
+          uri: http://user-service.assessor.svc.cluster.local:3003/
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=0
+        - id: fusion
+          uri: http://fusionauth.assessor.svc.cluster.local:9011/
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=0
+        - id: pdf
+          uri: http://user-service.assessor.svc.cluster.local:3003/
+          predicates:
+            - Path=/pdf/**
+          filters:
+            - StripPrefix=0
+        - id: events
+          uri: http://user-service.assessor.svc.cluster.local:3003/
+          predicates:
+            - Path=/events/**
+          filters:
+            - StripPrefix=0
+        - id: puppeteer
+          uri: http://enketo-pdf-generator.assessor.svc.cluster.local:8000/
+          predicates:
+            - Path=/convert-via-puppeteer/**
+          filters:
+            - StripPrefix=0
